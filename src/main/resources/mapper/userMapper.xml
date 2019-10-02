@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.userDao">
+	<cache eviction="LRU" flushInterval="10000" size="2048" readOnly="true" />
+	
+	<sql id="__select" >
+	SELECT 
+		VERSION as  version,
+		ORG_CODE as  orgCode,
+		MID as  mid,
+		MER_NAME as  merName,
+		APP_ID as  appId,
+		PAY_ORG_CODE as  payOrgCode,
+		MER_OUT_NAME as  merOutName,
+		EN_NAME as  enName,
+		EN_OUT_NAME as  enOutName,
+		MCC as  mcc,
+		AREA_CODE as  areaCode,
+		LICENSE_NO as  licenseNo,
+		LICENSE_ADDR as  licenseAddr,
+		TAX_NO as  taxNo,
+		CERT_NO as  certNo,
+		PERSON_NAME as  personName,
+		PERSON_NO as  personNo,
+		ADDRESS as  address,
+		BUSI_BGTIME as  busiBgtime,
+		BUSI_ENDTIME as  busiEndtime,
+		AREA as  area,
+		POS_NUM as  posNum,
+		CONTRACT_NO as  contractNo,
+		ACCNT_BANK as  accntBank,
+		CREDIT_SIGN as  creditSign,
+		ACCNT_NAME as  accntName,
+		ACCNT_NO as  accntNo,
+		ACCNT_TYPE as  accntType,
+		DEPOSIT_FLAG as  depositFlag,
+		BANK_NAME as  bankName,
+		BANK_NO as  bankNo,
+		SETTLE_PERIOD as  settlePeriod,
+		FEE_STLM_TYPE as  feeStlmType,
+		FEE_RATE as  feeRate,
+		FEE_VAL as  feeVal,
+		TOP_VALUE as  topValue,
+		MER_CONTACT as  merContact,
+		MER_FAX as  merFax,
+		MER_PHONE as  merPhone,
+		MARKET_NO as  marketNo,
+		MARKET_PHONE as  marketPhone,
+		CUSMNGR_NAME as  cusmngrName,
+		CUSMNGR_MOB as  cusmngrMob,
+		BUSINESS_STAT as  businessStat,
+		INSTALLMENT_PERIOD as  installmentPeriod,
+		PRODUCT_ID as  productId,
+		INSTALLMENT_FEE_TYPE as  installmentFeeType,
+		INSTALLMENT_FEE_RATE as  installmentFeeRate,
+		INSTALLMENT_FEE_VAL as  installmentFeeVal,
+		INSTALLMENT_FEE_MAX as  installmentFeeMax,
+		INSTALLMENT_FEE_MIN as  installmentFeeMin,
+		POINT_RATE as  pointRate,
+		POINT_FEE_RATE as  pointFeeRate,
+		OUT_CARD_TYPE as  outCardType,
+		OUT_VIS_FEE_RATE as  outVisFeeRate,
+		TRAN_LIMIT as  tranLimit,
+		DAY_TRAN_LIMIT as  dayTranLimit,
+		TRAN_LIMIT_PARAM as  tranLimitParam,
+		SPEC_FLAG as  specFlag,
+		MER_RISK as  merRisk,
+		BUSI_STAT as  busiStat,
+		ACCESS_MODE as  accessMode,
+		CORP_SIGN as  corpSign,
+		CORP_NO as  corpNo,
+		MERKET_PERSON as  merketPerson,
+		OPR_ACC as  oprAcc,
+		OPR_TIME as  oprTime,
+		CNL_ACC as  cnlAcc,
+		CNL_TIME as  cnlTime,
+		CONF_ACC as  confAcc,
+		CONF_TIME as  confTime,
+		CONF_RMK as  confRmk,
+		STATUS as  status,
+		CONF_STATUS as  confStatus,
+		FILE_FLAG as  fileFlag,
+		MER_DEV_RATE as  merDevRate,
+		MER_ST_DATE as  merStDate,
+		REMARK as  remark,
+		LAST_UPT_TIME as  lastUptTime,
+		LAST_UPT_ACC as  lastUptAcc,
+		LAST_UPT_ORG as  lastUptOrg,
+		OLD_ACCNT_NO as  oldAccntNo,
+		ACCT_FLAG as  acctFlag,
+		MER_DEV_NAME as  merDevName,
+		BRAND_FEE_MAX as  brandFeeMax,
+		ACCNT_NO_PRIVATE as  accntNoPrivate,
+		ACCNT_NAME_PRIVATE as  accntNamePrivate,
+		MCC_TYPE as mccType,
+		MCC_LEV  as mccLev,
+		TRAN_LIMIT_DEBIT as tranLimitDebit,
+		IP_FLAG as ipFlag,
+		TRANS_CHN_PARAM as transChnParam,
+		SETTLE_TYPE as settltType
+		
+	FROM TBL_CORE_MERCHANT
+	
+	</sql>
+
+	<!-- select -->
+	<select id="findCoreMerchant" resultType="com.jiuyv.posp.direct.entity.CoreMerchantVo"
+		parameterType="com.jiuyv.posp.direct.entity.CoreMerchantVo">
+ 	 	<include refid="__select"/>
+ 	 <where> 
+ 	 	<if test="mid !=null and mid != '' ">
+			 MID = #{mid} 		
+		</if>
+		<if test="orgCode !=null and orgCode != '' ">
+			 ORG_CODE = #{orgCode} 		
+		</if>
+	</where>
+ 	</select>
+ 	
+ 	<sql id="_findAll">
+ 	
+ 		SELECT 
+    VERSION as  version,
+    tc.ORG_CODE as  orgCode,
+    tc.MID as  mid,
+    tc.MER_NAME as  merName,
+    tc.APP_ID as  appId,
+    tc.PAY_ORG_CODE as  payOrgCode,
+    tc.MER_OUT_NAME as  merOutName,
+    tc.EN_NAME as  enName,
+    tc.EN_OUT_NAME as  enOutName,
+    tc.MCC as  mcc,
+    tc.AREA_CODE as  areaCode,
+    tc.LICENSE_NO as  licenseNo,
+    tc.LICENSE_ADDR as  licenseAddr,
+    tc.TAX_NO as  taxNo,
+    tc.CERT_NO as  certNo,
+    tc.PERSON_NAME as  personName,
+    tc.PERSON_NO as  personNo,
+    tc.ADDRESS as  address,
+    tc.BUSI_BGTIME as  busiBgtime,
+    tc.BUSI_ENDTIME as  busiEndtime,
+    tc.AREA as  area,
+    tc.POS_NUM as  posNum,
+    tc.CONTRACT_NO as  contractNo,
+    tc.ACCNT_BANK as  accntBank,
+    tc.CREDIT_SIGN as  creditSign,
+    tc.ACCNT_NAME as  accntName,
+    tc.ACCNT_NO as  accntNo,
+    tc.ACCNT_TYPE as  accntType,
+    tc.DEPOSIT_FLAG as  depositFlag,
+    tc.BANK_NAME as  bankName,
+    tc.BANK_NO as  bankNo,
+    tc.SETTLE_PERIOD as  settlePeriod,
+    tc.FEE_STLM_TYPE as  feeStlmType,
+    tc.FEE_RATE as  feeRate,
+    tc.FEE_VAL as  feeVal,
+    tc.TOP_VALUE as  topValue,
+    tc.MER_CONTACT as  merContact,
+    tc.MER_FAX as  merFax,
+    tc.MER_PHONE as  merPhone,
+    tc.MARKET_NO as  marketNo,
+    tc.MARKET_PHONE as  marketPhone,
+    tc.CUSMNGR_NAME as  cusmngrName,
+    tc.CUSMNGR_MOB as  cusmngrMob,
+    tc.BUSINESS_STAT as  businessStat,
+    tc.INSTALLMENT_PERIOD as  installmentPeriod,
+    tc.PRODUCT_ID as  productId,
+    tc.INSTALLMENT_FEE_TYPE as  installmentFeeType,
+    tc.INSTALLMENT_FEE_RATE as  installmentFeeRate,
+    tc.INSTALLMENT_FEE_VAL as  installmentFeeVal,
+    tc.INSTALLMENT_FEE_MAX as  installmentFeeMax,
+    tc.INSTALLMENT_FEE_MIN as  installmentFeeMin,
+    tc.POINT_RATE as  pointRate,
+    tc.POINT_FEE_RATE as  pointFeeRate,
+    tc.OUT_CARD_TYPE as  outCardType,
+    tc.OUT_VIS_FEE_RATE as  outVisFeeRate,
+    tc.TRAN_LIMIT as  tranLimit,
+    tc.DAY_TRAN_LIMIT as  dayTranLimit,
+    tc.TRAN_LIMIT_PARAM as  tranLimitParam,
+    tc.SPEC_FLAG as  specFlag,
+    tc.MER_RISK as  merRisk,
+    tc.BUSI_STAT as  busiStat,
+    tc.ACCESS_MODE as  accessMode,
+    tc.CORP_SIGN as  corpSign,
+    tc.CORP_NO as  corpNo,
+    tc.MERKET_PERSON as  merketPerson,
+    tc.OPR_ACC as  oprAcc,
+    tc.OPR_TIME as  oprTime,
+    tc.CNL_ACC as  cnlAcc,
+    tc.CNL_TIME as  cnlTime,
+    tc.CONF_ACC as  confAcc,
+    tc.CONF_TIME as  confTime,
+    tc.CONF_RMK as  confRmk,
+    tc.STATUS as  status,
+    tc.CONF_STATUS as  confStatus,
+    tc.FILE_FLAG as  fileFlag,
+    tc.MER_DEV_RATE as  merDevRate,
+    tc.MER_ST_DATE as  merStDate,
+    tc.REMARK as  remark,
+    tc.LAST_UPT_TIME as  lastUptTime,
+    tc.LAST_UPT_ACC as  lastUptAcc,
+    tc.LAST_UPT_ORG as  lastUptOrg,
+    tc.OLD_ACCNT_NO as  oldAccntNo,
+    tc.ACCT_FLAG as  acctFlag,
+    tc.MER_DEV_NAME as  merDevName,
+    tc.BRAND_FEE_MAX as  brandFeeMax,
+    tc.ACCNT_NO_PRIVATE as  accntNoPrivate,
+    tc.ACCNT_NAME_PRIVATE as  accntNamePrivate,
+    tc.MCC_TYPE as mccType,
+    tc.MCC_LEV  as mccLev,
+    tc.TRAN_LIMIT_DEBIT as tranLimitDebit,
+    tc.IP_FLAG as ipFlag,
+    tc.TRANS_CHN_PARAM as transChnParam,
+    tc.SETTLE_TYPE as settltType,
+    mk.sign_key,
+    mk.ecp_alg    
+  FROM TBL_CORE_MERCHANT tc
+  left join 
+  tbl_core_merchant_key mk  
+  on tc.mid = mk.mid 
+ 	</sql>
+ 	<select id="findCoreMerchantKey" resultType="com.jiuyv.posp.direct.entity.CoreMerchantVo" parameterType="com.jiuyv.posp.direct.entity.CoreMerchantVo">
+ 		<include refid="_findAll"/>
+ 		<where>
+ 			<if test="mid != null and mid !=''">tc.MID = #{mid}</if>
+ 		</where> 
+ 		
+ 	</select>
+
+	<sql id="__simple_where" >
+		<trim prefix="where" prefixOverrides="and|or" >
+			<if test="msgType != null" >and   MSG_TYPE = #{msgType}</if>
+			<if test="tidSeq != null" >and   TID_SEQ = #{tidSeq}</if>
+			<if test="askRespCode != null" >and   ASK_RESP_CODE = #{askRespCode}</if>
+			<if test="tid != null" >and   TID = #{tid}</if>
+			<if test="batchNo != null" >and   BATCH_NO = #{batchNo}</if>
+			<if test="txnLock != null" >and   TXN_LOCK = #{txnLock}</if>
+			<if test="txnLockTime != null" >and   TXN_LOCK_TIME = #{txnLockTime}</if>
+			<if test="transTime != null" >and   TRANS_TIME = #{transTime}</if>
+			<if test="transTimeToBank != null" >and   TRANS_TIME_TO_BANK = #{transTimeToBank}</if>
+			<if test="transTimeResp != null" >and   TRANS_TIME_RESP = #{transTimeResp}</if>
+			<if test="pospStmt != null" >and   POSP_STMT = #{pospStmt}</if>
+			<if test="transSeq != null" >and   TRANS_SEQ = #{transSeq}</if>
+			<if test="msgTypeResp != null" >and   MSG_TYPE_RESP = #{msgTypeResp}</if>
+			<if test="pan != null" >and   PAN = #{pan}</if>
+			<if test="issuerCode != null" >and   ISSUER_CODE = #{issuerCode}</if>
+			<if test="debitCreditFlag != null" >and   DEBIT_CREDIT_FLAG = #{debitCreditFlag}</if>
+			<if test="procCode != null" >and   PROC_CODE = #{procCode}</if>
+			<if test="transAmt != null" >and   TRANS_AMT = #{transAmt}</if>
+			<if test="transAmtRep != null" >and   TRANS_AMT_REP = #{transAmtRep}</if>
+			<if test="txnTransTime != null" >and   TXN_TRANS_TIME = #{txnTransTime}</if>
+			<if test="tidSeqResp != null" >and   TID_SEQ_RESP = #{tidSeqResp}</if>
+			<if test="tidTransTime != null" >and   TID_TRANS_TIME = #{tidTransTime}</if>
+			<if test="tidTransTimeResp != null" >and   TID_TRANS_TIME_RESP = #{tidTransTimeResp}</if>
+			<if test="tidTransDate != null" >and   TID_TRANS_DATE = #{tidTransDate}</if>
+			<if test="tidTransDateResp != null" >and   TID_TRANS_DATE_RESP = #{tidTransDateResp}</if>
+			<if test="stlmDate != null" >and   STLM_DATE = #{stlmDate}</if>
+			<if test="mcc != null" >and   MCC = #{mcc}</if>
+			<if test="pointEntryCode != null" >and   POINT_ENTRY_CODE = #{pointEntryCode}</if>
+			<if test="cardSeqNum != null" >and   CARD_SEQ_NUM = #{cardSeqNum}</if>
+			<if test="pointCondCode != null" >and   POINT_COND_CODE = #{pointCondCode}</if>
+			<if test="pinCaptureCode != null" >and   PIN_CAPTURE_CODE = #{pinCaptureCode}</if>
+			<if test="acquireInstitCode != null" >and   ACQUIRE_INSTIT_CODE = #{acquireInstitCode}</if>
+			<if test="respAcquireInstitCode != null" >and   RESP_ACQUIRE_INSTIT_CODE = #{respAcquireInstitCode}</if>
+			<if test="askReferenceNum != null" >and   ASK_REFERENCE_NUM = #{askReferenceNum}</if>
+			<if test="referenceNum != null" >and   REFERENCE_NUM = #{referenceNum}</if>
+			<if test="referenceNumResp != null" >and   REFERENCE_NUM_RESP = #{referenceNumResp}</if>
+			<if test="authRespCode != null" >and   AUTH_RESP_CODE = #{authRespCode}</if>
+			<if test="respCode != null" >and   RESP_CODE = #{respCode}</if>
+			<if test="respCodeLocal != null" >and   RESP_CODE_LOCAL = #{respCodeLocal}</if>
+			<if test="respCodeOri != null" >and   RESP_CODE_ORI = #{respCodeOri}</if>
+			<if test="tidResp != null" >and   TID_RESP = #{tidResp}</if>
+			<if test="mid != null" >and   MID = #{mid}</if>
+			<if test="respMid != null" >and   RESP_MID = #{respMid}</if>
+			<if test="acqId != null" >and   ACQ_ID = #{acqId}</if>
+			<if test="amtCode != null" >and   AMT_CODE = #{amtCode}</if>
+			<if test="secInfo != null" >and   SEC_INFO = #{secInfo}</if>
+			<if test="txnTypeCode != null" >and   TXN_TYPE_CODE = #{txnTypeCode}</if>
+			<if test="batchNoResp != null" >and   BATCH_NO_RESP = #{batchNoResp}</if>
+			<if test="oriBatchNo != null" >and   ORI_BATCH_NO = #{oriBatchNo}</if>
+			<if test="oriTidSeq != null" >and   ORI_TID_SEQ = #{oriTidSeq}</if>
+			<if test="oriTidTransDate != null" >and   ORI_TID_TRANS_DATE = #{oriTidTransDate}</if>
+			<if test="oriTransSeq != null" >and   ORI_TRANS_SEQ = #{oriTransSeq}</if>
+			<if test="creditOrgCode != null" >and   CREDIT_ORG_CODE = #{creditOrgCode}</if>
+			<if test="messageReasonCode != null" >and   MESSAGE_REASON_CODE = #{messageReasonCode}</if>
+			<if test="sepcialchargeType != null" >and   SEPCIALCHARGE_TYPE = #{sepcialchargeType}</if>
+			<if test="sepcialchargeLevel != null" >and   SEPCIALCHARGE_LEVEL = #{sepcialchargeLevel}</if>
+			<if test="busiDeductionRate != null" >and   BUSI_DEDUCTION_RATE = #{busiDeductionRate}</if>
+			<if test="rollbackFlag != null" >and   ROLLBACK_FLAG = #{rollbackFlag}</if>
+			<if test="cancelFlag != null" >and   CANCEL_FLAG = #{cancelFlag}</if>
+			<if test="settleFlag != null" >and   SETTLE_FLAG = #{settleFlag}</if>
+			<if test="backType != null" >and   BACK_TYPE = #{backType}</if>
+			<if test="backAmtType != null" >and   BACK_AMT_TYPE = #{backAmtType}</if>
+			<if test="backAmt != null" >and   BACK_AMT = #{backAmt}</if>
+			<if test="backStat != null" >and   BACK_STAT = #{backStat}</if>
+			<if test="backReason != null" >and   BACK_REASON = #{backReason}</if>
+			<if test="routeId != null" >and   ROUTE_ID = #{routeId}</if>
+			<if test="transferPayorg != null" >and   TRANSFER_PAYORG = #{transferPayorg}</if>
+			<if test="rsv1 != null" >and   RSV1 = #{rsv1}</if>
+			<if test="rsv2 != null" >and   RSV2 = #{rsv2}</if>
+			<if test="rsv3 != null" >and   RSV3 = #{rsv3}</if>
+			<if test="rsv4 != null" >and   RSV4 = #{rsv4}</if>
+			<if test="txnType != null" >and   TXN_TYPE = #{txnType}</if>
+			<if test="icRelatedData != null" >and   IC_RELATED_DATA = #{icRelatedData}</if>
+			<if test="icTa != null" >and   IC_TA = #{icTa}</if>
+			<if test="adjFlag != null" >and   ADJ_FLAG = #{adjFlag}</if>
+			<if test="systemTraceId != null" >and   SYSTEM_TRACE_ID = #{systemTraceId}</if>
+			<if test="tidReadAblity != null" >and   TID_READ_ABLITY = #{tidReadAblity}</if>
+			<if test="ipData != null" >and   IP_DATA = #{ipData}</if>
+			<if test="oriCardSeq != null" >and   ORI_CARD_SEQ = #{oriCardSeq}</if>
+			<if test="respAcctSettleType != null" >RESP_ACCT_SETTLE_TYPE = #{respAcctSettleType},</if>
+			<if test="respCardAcctLevel != null" >RESP_CARD_ACCT_LEVEL = #{respCardAcctLevel},</if>
+			<if test="respCardApp != null" >RESP_CARD_APP = #{respCardApp},</if>
+			<if test="xlTransType != null" >and   XL_TRANS_TYPE = #{xlTransType}</if>
+			<if test="xlWorkDay != null" >and   XL_WORK_DAY = #{xlWorkDay}</if>
+			<if test="xlWorkBatch != null" >and   XL_WORK_BATCH = #{xlWorkBatch}</if>
+			<if test="xlOprNo != null" >and   XL_OPR_NO = #{xlOprNo}</if>
+			<if test="xlInOutType != null" >and   XL_IN_OUT_TYPE = #{xlInOutType}</if>
+			<if test="xlInNo != null" >and   XL_IN_NO = #{xlInNo}</if>
+			<if test="xlOutNo != null" >and   XL_OUT_NO = #{xlOutNo}</if>
+			<if test="xlPlateColor != null" >and   XL_PLATE_COLOR = #{xlPlateColor}</if>
+			<if test="xlPlateNo != null" >and   XL_PLATE_NO = #{xlPlateNo}</if>
+		</trim>
+	</sql>
+
+
+	<!-- select -->
+	<select id="findVoforupdate" resultType="com.jiuyv.posp.direct.entity.CoreMerchantVo">
+		<include refid="__select"/>
+		<include refid="__simple_where"/>
+		FOR UPDATE
+	</select>
+</mapper>
