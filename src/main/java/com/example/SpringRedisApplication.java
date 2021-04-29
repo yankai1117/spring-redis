@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class SpringRedisApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(SpringRedisApplication.class, args);
+        System.out.println("这里我新增了一段打印");
     }
 
 }
